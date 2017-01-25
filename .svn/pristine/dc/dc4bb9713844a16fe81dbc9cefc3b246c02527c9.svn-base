@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>短信群发</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../plugins/layui/css/layui.css"  media="all">
+	<style>
+		/*短信内容*/
+		.help-block {
+			display: block;
+			margin-top: 5px;
+			margin-bottom: 10px;
+			color: #737373;
+		}
+		/*红色关闭按钮*/
+		.layui-btn-close{
+			background-color:#ff7b7b;
+		}
+		/*模版*/
+		.template-tab li{
+			padding:0 0;
+		}
+		.site-text {
+			position: relative;
+		}
+		.site-text p {
+			margin-bottom: 10px;
+			line-height: 22px;
+		}
+	</style>
+</head>
+<body>
+<div class="layui-tab layui-tab-card" lay-allowclose="true">
+	<ul class="layui-tab-title template-tab">
+		<li style="width:50%;float:left;text-align:center;">现有模版</li>
+		<li style="width:50%;float:right;text-align:center;">新增模版</li>
+	</ul>
+	<div class="layui-tab-content">
+		<div class="layui-tab-item layui-show">
+			<div style="width:50%;float:left;height:247px;position:relative;">
+				<div class="site-text">
+					<p>移动管家下载链接</p>
+				</div>
+				<div class="site-text">
+					<p>云管家下载链接</p>
+				</div>
+
+
+				<div class="layui-input-block" style="position:absolute;bottom:15px;">
+					<button class="layui-btn layui-btn-close" lay-submit="" lay-filter="demo1">删除</button>
+				</div>
+				<hr style="border-right:1px solid #e2e2e2;height:257px;position:absolute;right:0;top:-20px;">
+			</div>
+
+			<div style="width:50%;float:right;">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label">模版名称</label>
+						<div class="layui-input-block">
+							<input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item layui-form-text">
+						<label class="layui-form-label">模版内容</label>
+						<div class="layui-input-block">
+							<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+							<span class="help-block">您已输入0个字</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">保存</button>
+							<button class="layui-btn layui-btn-close" lay-submit="" lay-filter="demo1">清空</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!--<div id="view" style="height:500px;width:500px;"></div>-->
+<!--<script id="demo" type="text/html">-->
+	<!--<h3>{{ d.title }}</h3>-->
+	<!--<ul>-->
+		<!--{{#  layui.each(d.list, function(index, item){ }}-->
+		<!--<li>-->
+			<!--<span>{{ item.modname }}</span>-->
+			<!--<span>{{ item.alias }}：</span>-->
+			<!--<span>{{ item.site || '' }}</span>-->
+		<!--</li>-->
+		<!--{{#  }); }}-->
+
+		<!--{{#  if(d.list.length === 0){ }}-->
+		<!--无数据-->
+		<!--{{#  } }}-->
+	<!--</ul>-->
+<!--</script>-->
+<script src="../plugins/layui/layui.js" charset="utf-8"></script>
+<!--引入内置组件-->
+<script src="../js/modules/laytpl.js" charset="utf-8"></script>
+<script>
+//	layui.use('laytpl', function(){
+//		var laytpl = layui.laytpl;
+//		//使用方式跟独立组件完全一样
+//		laytpl('{{ d.name }}是一位公猿').render({
+//			title:'kankan',
+//			name: '贤心'
+//		}, function(string){
+//			console.log(string); //贤心是一位公猿
+//		});
+//	});
+
+
+//	var data = {
+//		"title":"Layui常用模块"
+//		,"list":[{"modname":"弹层","alias":"layer","site":"layer.layui.com"},{"modname":"表单","alias":"form"}]
+//	};
+//	var getTpl = demo.innerHTML;
+//	laytpl(getTpl).render(data, function(html){
+//		view.innerHTML = html;
+//	});
+</script>
+<script>
+
+//表单
+	layui.use(['form', 'layedit', 'laydate'], function(){
+		var form = layui.form()
+				,layer = layui.layer
+				,layedit = layui.layedit
+				,laydate = layui.laydate;
+
+		//创建一个编辑器
+		var editIndex = layedit.build('LAY_demo_editor');
+
+	});
+
+//	分页
+	layui.use(['laypage', 'layer'], function(){
+		var laypage = layui.laypage
+				,layer = layui.layer;
+		laypage({
+			cont: 'demo2'
+			,pages: 100
+			,skin: '#1E9FFF'
+		});
+
+		//将一段数组分页展示
+
+		//测试数据
+		var data = [
+
+		];
+
+		var nums = 5; //每页出现的数据量
+
+		//模拟渲染
+		var render = function(curr){
+			//此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
+			var str = '', last = curr*nums - 1;
+			last = last >= data.length ? (data.length-1) : last;
+			for(var i = (curr*nums - nums); i <= last; i++){
+				str += '<li>'+ data[i] +'</li>';
+			}
+			return str;
+		};
+
+		//调用分页
+		laypage({
+			cont: 'demo8'
+			,pages: Math.ceil(data.length/nums) //得到总页数
+			,jump: function(obj){
+				document.getElementById('biuuu_city_list').innerHTML = render(obj.curr);
+			}
+		});
+
+	});
+</script>
+</body>
+</html>

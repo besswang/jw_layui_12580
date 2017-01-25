@@ -1,0 +1,49 @@
+/*复选框覆盖*/
+.layui-tab-title{height:auto;}
+.layui-form-checked, .layui-form-checked:hover {
+	border: 1px solid #1E9FFF;
+}
+.layui-form-checked span, .layui-form-checked:hover span {
+	background-color: #1E9FFF;
+}
+.layui-form-checkbox span{
+	font-size:12px;
+}
+.layui-form-checked i, .layui-form-checked:hover i {
+	color: #1E9FFF;
+}
+/*红色删除*/
+.delete-btn{
+	background-color:transparent;
+	color:#ff7b7b;
+}
+.delete-btn:hover{
+	cursor:pointer;
+	background-color:transparent;
+	color: #ff7b7b;
+}
+/*定时发送按钮*/
+.layui-form-radio i:hover, .layui-form-radioed i {
+	color: #1E9FFF;
+}
+.layui-form-radio i{
+	font-size:16px;
+}
+/*短信内容*/
+.help-block {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: #737373;
+}
+/*红色关闭按钮*/
+.layui-btn-close{
+	background-color:#ff7b7b;
+}
+/*tab*/
+.layui-tab-brief>.layui-tab-title .layui-this {
+	color: #1E9FFF;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+	border-bottom: 3px solid #1E9FFF;
+}

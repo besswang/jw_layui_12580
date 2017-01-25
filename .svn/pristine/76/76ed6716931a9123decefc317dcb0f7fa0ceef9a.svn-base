@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base href="../../" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+	<div class="layui-body layui-tab-content site-demo site-demo-body">
+		<form class="layui-form" action="">
+			<div class="layui-form-mid">
+				<label class="layui-form-label">验证手机</label>
+				<div class="layui-input-block">
+					<input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-mid">
+				<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo2">提交</button>
+			</div>
+		</form>
+	</div>
+	</body>
+</html>

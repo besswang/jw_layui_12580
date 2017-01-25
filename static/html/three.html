@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>召开会议</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../plugins/layui/css/layui.css"  media="all">
+	<style>
+		/*短信内容*/
+		.help-block {
+			display: block;
+			margin-top: 5px;
+			margin-bottom: 10px;
+			color: #737373;
+		}
+
+	</style>
+</head>
+<body>
+<div class="layui-body layui-tab-content site-demo site-demo-body">
+	<form class="layui-form" action="">
+		<div class="layui-form-mid">
+			<label class="layui-form-label">电话号码</label>
+			<div class="layui-input-block">
+				<input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-mid">
+			<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo2">查询</button>
+		</div>
+	</form>
+	<p class="help-block layui-clear">此处用于用户召开会议出现"该来电不是员工,无权使用本功能!"</p>
+</div>
+<script src="../plugins/layui/layui.js" charset="utf-8"></script>
+
+</body>
+</html>

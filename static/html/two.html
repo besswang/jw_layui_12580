@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>短信群发</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../plugins/layui/css/layui.css"  media="all">
+	<link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+<div class="layui-tab layui-tab-card" lay-allowclose="true">
+	<ul class="layui-tab-title">
+		<li>
+			<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">从通讯录加入</button>
+		</li>
+		<li>
+			<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">添加临时成员</button>
+		</li>
+		<li>
+			<form class="layui-form" action="">
+				<div class="layui-form-mid">
+					<div class="layui-input-inline">
+						<input class="layui-btn-normal" type="checkbox" name="all" title="全选">
+					</div>
+					<label class="layui-form-label">选择全体成员</label>
+				</div>
+			</form>
+		</li>
+	</ul>
+	<div class="layui-tab-content">
+		<div class="layui-tab-item layui-show">
+			群发对象:
+			<table class="layui-table">
+				<colgroup>
+					<col width="150">
+					<col width="180">
+					<col width="200">
+					<col width="120">
+					<col>
+				</colgroup>
+				<thead>
+				<tr>
+					<th>姓名</th>
+					<th>成员类别</th>
+					<th>手机号码</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>萝卜</td>
+					<td>临时成员</td>
+					<td>18799124656</td>
+					<td><a class="delete-btn">删除</a></td>
+				</tr>
+				<tr>
+					<td>张爱玲</td>
+					<td>同事</td>
+					<td>18799124656</td>
+					<td><a class="delete-btn">删除</a></td>
+				</tr>
+				</tbody>
+			</table>
+			<div id="demo2"></div>
+			<form class="layui-form" action="">
+				<div class="layui-form-mid">
+					<label class="layui-form-label" style="width:90px;">是否定时发送:</label>
+					<div class="layui-input-inline">
+						<input type="radio" name="yes" value="是" title="是" checked="">
+						<input type="radio" name="yes" value="否" title="否">
+					</div>
+				</div>
+				<!--时间-->
+				<div class="layui-form-mid">
+					<div class="layui-inline">
+						<input class="layui-input" placeholder="日期" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<div class="layui-form-item" style="margin-bottom:8px;">
+					<label class="layui-form-label" style="text-align:left;">短信内容:</label>
+					<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1" style="float:right;margin-left:15px;">上行短信</button>
+					<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1" style="float:right;">短信模版</button>
+				</div>
+				<div class="layui-form-item layui-form-text">
+					<div class="layui-input-block" style="margin-left:0;">
+						<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+						<span class="help-block">您已输入0个字</span>
+					</div>
+				</div>
+				<div class="layui-form-mid">
+					<div class="layui-input-block">
+						<button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">发送</button>
+						<button class="layui-btn layui-btn-close" lay-submit="" lay-filter="demo1">关闭页面</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="../plugins/layui/layui.js" charset="utf-8"></script>
+<script>
+//表单
+	layui.use(['form', 'layedit', 'laydate'], function(){
+		var form = layui.form()
+				,layer = layui.layer
+				,layedit = layui.layedit
+				,laydate = layui.laydate;
+
+		//创建一个编辑器
+		var editIndex = layedit.build('LAY_demo_editor');
+
+	});
+
+//	分页
+	layui.use(['laypage', 'layer'], function(){
+		var laypage = layui.laypage
+				,layer = layui.layer;
+		laypage({
+			cont: 'demo2'
+			,pages: 100
+			,skin: '#1E9FFF'
+		});
+
+		//将一段数组分页展示
+
+		//测试数据
+		var data = [
+
+		];
+
+		var nums = 5; //每页出现的数据量
+
+		//模拟渲染
+		var render = function(curr){
+			//此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
+			var str = '', last = curr*nums - 1;
+			last = last >= data.length ? (data.length-1) : last;
+			for(var i = (curr*nums - nums); i <= last; i++){
+				str += '<li>'+ data[i] +'</li>';
+			}
+			return str;
+		};
+
+		//调用分页
+		laypage({
+			cont: 'demo8'
+			,pages: Math.ceil(data.length/nums) //得到总页数
+			,jump: function(obj){
+				document.getElementById('biuuu_city_list').innerHTML = render(obj.curr);
+			}
+		});
+
+	});
+</script>
+</body>
+</html>
